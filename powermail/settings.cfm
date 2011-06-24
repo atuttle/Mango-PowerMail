@@ -2,17 +2,17 @@
 LICENSE INFORMATION:
 
 Copyright 2010, Adam Tuttle
- 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not 
-use this file except in compliance with the License. 
 
-You may obtain a copy of the License at 
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License.
 
-	http://www.apache.org/licenses/LICENSE-2.0 
-	
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
 Unless required by applicable law or agreed to in writing, software distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
-CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 
 VERSION INFORMATION:
@@ -30,16 +30,16 @@ This file is part of PowerMail.
 	<cfparam name="form.defaultToAddress" default="" />
 	<cfparam name="form.useSSL" default="false" />
 	<cfparam name="form.useTLS" default="false" />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'server', form.server, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'port', form.port, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'username', form.username, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'password', form.password, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'defaultFromAddress', form.defaultFromAddress, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'defaultToAddress', form.defaultToAddress, false) />
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'useSSL', form.useSSL, false) />
-	<!--- set the "reload" argument of the final setting to "true" to force the settings to be persisted and 
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'server', form.server, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'port', form.port, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'username', form.username, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'password', form.password, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'defaultFromAddress', form.defaultFromAddress, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'defaultToAddress', form.defaultToAddress, false) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'useSSL', form.useSSL, false) />
+	<!--- set the "reload" argument of the final setting to "true" to force the settings to be persisted and
 	the cached config to be reloaded --->
-	<cfset request.blogManager.saveSetting('/generalSettings/mailServer', 'useTLS', form.useTLS, true) />
+	<cfset variables.preferences.put('/generalSettings/mailServer', 'useTLS', form.useTLS, true) />
 
 	<!--- display message --->
 	<cfset event.data.message.setstatus("success") />
@@ -50,7 +50,7 @@ This file is part of PowerMail.
 	<cfset variables.preferences.init(variables.configFile) />
 </cfif>
 
-<!--- 
+<!---
 	Get values to display in the form. Since Mango doesn't provide an API to read settings from its main config file
 	we need to use a local instance of the preferences file reader component that Mango uses.
 --->
